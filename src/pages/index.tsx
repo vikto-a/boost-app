@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 			<Navbar />
 
 			<main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
-				<h1>hello</h1>
+				<h1>{hello.data ? hello.data.greeting : 'loading...'}</h1>
 			</main>
 		</>
 	);
