@@ -1,5 +1,6 @@
+import { Hero, Navbar } from '@components';
+
 import Head from 'next/head';
-import { Navbar } from '@components';
 import type { NextPage } from 'next';
 import { trpc } from '../utils/trpc';
 
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
 
 			<main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
 				<h1>{hello.data ? hello.data.greeting : 'loading...'}</h1>
+				<Hero />
 			</main>
 		</>
 	);
