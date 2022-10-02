@@ -1,7 +1,13 @@
-import { GiBiceps, GiChestArmor, GiLeg, GiRun } from 'react-icons/Gi';
+import { Btn, Exercise } from '@components';
+import {
+	GiBiceps,
+	GiChestArmor,
+	GiLeg,
+	GiPlayButton,
+	GiRun,
+} from 'react-icons/Gi';
 
 import { Color } from '@type';
-import { Exercise } from '@components';
 
 export const Hero: React.FC = () => {
 	return (
@@ -40,6 +46,9 @@ export const Hero: React.FC = () => {
 					color={Color.Green}
 				/>
 			</div>
+			<Btn to="/begin" icon={GiPlayButton}>
+				Start
+			</Btn>
 		</section>
 	);
 };
