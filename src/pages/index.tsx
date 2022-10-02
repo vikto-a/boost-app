@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Navbar } from '../components';
+import { Navbar } from '@components';
 import type { NextPage } from 'next';
 import { trpc } from '../utils/trpc';
 
