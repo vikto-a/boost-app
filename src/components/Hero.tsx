@@ -8,7 +8,7 @@ export const Hero: React.FC = () => {
 		<section className="flex flex-col items-center gap-6">
 			<h1 className="text-center text-2xl font-bold">Murph Workout</h1>
 			<div className="relative flex flex-col items-center gap-6">
-				<div className="absolute top-0 bottom-0 z-10 w-px border border-dashed border-neutral-700"></div>
+				<div className="absolute top-0 bottom-0 z-10 w-px border border-dashed border-white"></div>
 				<Exercise
 					icon={GiRun}
 					quantity="1 Mile"
