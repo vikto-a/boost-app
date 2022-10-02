@@ -11,8 +11,20 @@ import { Color } from '@type';
 
 export const Hero: React.FC = () => {
 	return (
-		<section className="flex flex-col items-center gap-6">
-			<h1 className="text-center text-2xl font-bold">Murph Workout</h1>
+		<section className="container mx-auto grid min-h-screen items-center gap-12 px-6 py-24 md:grid-cols-2">
+			<div className="flex flex-col items-start gap-3">
+				<h1 className="text-center text-2xl font-bold">Murph Workout</h1>
+				<p className="text-lg text-neutral-400">
+					Lieutenant Michael Murphy was a SEAL team member who lost his life
+					serving his country in Afghanistan in 2005 during Operation Red Wings.
+					This workout is dedicated to him and all the other service members who
+					have lost their lives serving their country.
+				</p>
+
+				<Btn to="/begin" icon={GiPlayButton}>
+					Start
+				</Btn>
+			</div>
 			<div className="relative flex flex-col items-center gap-6">
 				<div className="absolute top-0 bottom-0 z-10 w-px border border-dashed border-white"></div>
 				<Exercise
@@ -46,9 +58,6 @@ export const Hero: React.FC = () => {
 					color={Color.Green}
 				/>
 			</div>
-			<Btn to="/begin" icon={GiPlayButton}>
-				Start
-			</Btn>
 		</section>
 	);
 };
