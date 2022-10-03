@@ -12,10 +12,10 @@ export const Btn: React.FC<Props> = ({ to, children, icon }) => {
 	return (
 		<Link
 			href={to}
-			className="flex items-center gap-3 rounded-md bg-purple-100 px-6 py-3 text-black shadow-xl shadow-purple-400"
+			className="flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black shadow-xl shadow-purple-500"
 		>
 			<span className="font-bold">{children}</span>
-			{React.createElement(icon, { size: 30 })}
+			{React.createElement(icon, { size: 25 })}
 		</Link>
 	);
 };
