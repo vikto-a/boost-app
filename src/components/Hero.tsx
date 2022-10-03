@@ -12,9 +12,11 @@ import { Color } from '@type';
 export const Hero: React.FC = () => {
 	return (
 		<section className="container mx-auto grid min-h-screen items-center gap-12 px-6 py-24 md:grid-cols-2">
-			<div className="flex flex-col items-start gap-3">
-				<h1 className="text-center text-2xl font-bold">Murph Workout</h1>
-				<p className="text-lg text-neutral-400">
+			<div className="flex flex-col items-center gap-3 md:items-start">
+				<h1 className="text-center text-2xl font-bold md:text-left">
+					Murph Workout
+				</h1>
+				<p className="text-center text-lg text-neutral-400 md:text-left">
 					Lieutenant Michael Murphy was a SEAL team member who lost his life
 					serving his country in Afghanistan in 2005 during Operation Red Wings.
 					This workout is dedicated to him and all the other service members who
