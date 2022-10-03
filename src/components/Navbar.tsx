@@ -1,4 +1,4 @@
-import { GiCrosshair, GiHamburgerMenu } from 'react-icons/gi';
+import { GiHamburgerMenu, GiRoundStar } from 'react-icons/gi';
 
 import { NavLink } from '@components';
 import { Popover } from '@headlessui/react';
@@ -8,7 +8,7 @@ export const Navbar: React.FC = () => {
 		<nav className="sticky top-6 z-40 mx-6 flex justify-center">
 			<div className="container flex items-center justify-between rounded-md bg-neutral-900 px-6">
 				<div className="flex items-center gap-3">
-					<GiCrosshair size={30} />
+					<GiRoundStar size={30} />
 					<span className="py-3 text-xl font-bold uppercase">Murph</span>
 				</div>
 
