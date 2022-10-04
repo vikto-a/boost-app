@@ -1,4 +1,5 @@
 import { Center, Page } from '@layouts';
+import { Event, Timer } from '@components';
 import {
 	GiBiceps,
 	GiChestArmor,
@@ -7,7 +8,6 @@ import {
 	GiRun,
 	GiTrashCan,
 } from 'react-icons/gi';
-import { Stage, Timer } from '@components';
 
 import { Color } from '@type';
 import { DateTime } from 'luxon';
@@ -15,13 +15,20 @@ import Link from 'next/link';
 import type { NextPage } from 'next';
 import { useState } from 'react';
 
+enum Stage {
+	FirstSprint,
+	Exercises,
+	LastSprint,
+}
+
 const Workout: NextPage = () => {
 	const [start, setStart] = useState(DateTime.now());
+	const [stage, setStage] = useState(Stage.FirstSprint);
 
 	return (
 		<Page title="Murph Workout">
 			<Center>
-				<Stage
+				<Event
 					icon={GiRun}
 					quantity="1 Mile"
 					name="Sprint"
@@ -48,26 +55,26 @@ const Workout: NextPage = () => {
 				<div className="flex w-full flex-col gap-6">
 					<span className="text-center text-sm text-neutral-400">Up Next</span>
 					<div className="grid w-full grid-cols-3 gap-6">
-						<Stage
+						<Event
 							icon={GiBiceps}
 							quantity="100 Reps"
 							name="Pull Ups"
 							color={Color.Red}
 						/>
-						<Stage
+						<Event
 							icon={GiChestArmor}
 							quantity="200 Reps"
 							name="Push Ups"
 							color={Color.Blue}
 						/>
-						<Stage
+						<Event
 							icon={GiLeg}
 							quantity="300 Reps"
 							name="Squats"
 							color={Color.Yellow}
 						/>
 					</div>
-					<Stage
+					<Event
 						icon={GiRun}
 						quantity="1 Mile"
 						name="Sprint"

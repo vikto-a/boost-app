@@ -10,7 +10,7 @@ type Props = {
 	active?: boolean;
 };
 
-export const Stage: React.FC<Props> = ({
+export const Event: React.FC<Props> = ({
 	active,
 	quantity,
 	name,
