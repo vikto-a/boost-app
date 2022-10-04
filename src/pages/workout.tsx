@@ -27,6 +27,7 @@ enum Stage {
 const Workout: NextPage = () => {
 	const [start, setStart] = useState(DateTime.now());
 	const [stage, setStage] = useState(Stage.FirstSprint);
+	const [running, setRunning] = useState(true);
 
 	const [firstSprintEndTime, setFirstSprintEndTime] = useState<
 		DateTime | undefined
@@ -112,7 +113,7 @@ const Workout: NextPage = () => {
 					)}
 				</div>
 
-				<Timer start={start} />
+				<Timer start={start} running={running} />
 				<div className="flex w-full items-center justify-between">
 					{stage > Stage.FirstSprint && (
 						<button
@@ -155,7 +156,7 @@ const Workout: NextPage = () => {
 										break;
 									case Stage.LastSprint:
 										setLastSprintEndTime(DateTime.now());
-										// stop timer
+										setRunning(false);
 										break;
 								}
 

@@ -4,32 +4,39 @@ import { DateTime } from 'luxon';
 
 type Props = {
 	start: DateTime;
+	running: boolean;
 };
 
-export const Timer: React.FC<Props> = ({ start }) => {
+export const Timer: React.FC<Props> = ({ start, running }) => {
 	const [hours, setHours] = useState<undefined | number>(0);
 	const [minutes, setMinutes] = useState<undefined | number>(0);
 	const [seconds, setSeconds] = useState<undefined | number>(0);
 	const [milliseconds, setMilliseconds] = useState<undefined | number>(0);
 
-	useEffect(() => {
-		const interval = setInterval(() => {
-			const diff = DateTime.now().diff(start, [
-				'hours',
-				'minutes',
-				'seconds',
-				'milliseconds',
-			]);
+	const updateTimer = () => {
+		const diff = DateTime.now().diff(start, [
+			'hours',
+			'minutes',
+			'seconds',
+			'milliseconds',
+		]);
 
-			setHours(diff.toObject().hours);
-			setMinutes(diff.toObject().minutes);
-			setSeconds(diff.toObject().seconds);
-			setMilliseconds(diff.toObject().milliseconds);
-		}, 100);
+		setHours(diff.toObject().hours);
+		setMinutes(diff.toObject().minutes);
+		setSeconds(diff.toObject().seconds);
+		setMilliseconds(diff.toObject().milliseconds);
+	};
+
+	useEffect(() => {
+		const interval = setInterval(updateTimer, 100);
+
+		if (!running) {
+			clearInterval(interval);
+		}
 		return () => {
 			clearInterval(interval);
 		};
-	}, []);
+	}, [running]);
 
 	return (
 		<div className="mx-auto font-mono text-5xl">
