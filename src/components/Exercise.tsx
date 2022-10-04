@@ -39,7 +39,7 @@ export const Exercise: React.FC<Props> = ({ quantity, name, color, icon }) => {
 
 	return (
 		<div
-			className={`z-30 flex w-56 items-center space-x-6 rounded-md border-l-8 bg-neutral-900 py-3 px-6 shadow-2xl odd:ml-12 even:mr-12 ${borderColor} ${shadowColor}`}
+			className={`z-30 flex w-56 items-center space-x-6 rounded-md border-l-8 bg-neutral-900 py-3 px-6 shadow-2xl odd:ml-12 even:mr-12 md:odd:mr-44 md:even:ml-44 ${borderColor} ${shadowColor}`}
 		>
 			<div className={`${iconColor}`}>
 				{React.createElement(icon, { size: 30 })}
