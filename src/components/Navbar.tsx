@@ -31,8 +31,6 @@ export const Navbar: React.FC = () => {
 							<NavLink to="/leaderboard">Leaderboard</NavLink>
 							<NavLink to="/login">Login</NavLink>
 						</div>
-
-						<img src="/solutions.jpg" alt="" />
 					</Popover.Panel>
 				</Popover>
 			</div>
