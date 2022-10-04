@@ -3,7 +3,7 @@ type Props = {
 };
 export const Center: React.FC<Props> = ({ children }) => {
 	return (
-		<div className="flex min-h-screen flex-col items-center justify-center">
+		<div className="mx-auto flex min-h-screen max-w-screen-md flex-col items-center justify-center gap-12">
 			{children}
 		</div>
 	);
