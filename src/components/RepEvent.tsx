@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { Color } from '@type';
 import { DateTime } from 'luxon';
@@ -13,6 +13,8 @@ type Props = {
 	active?: boolean;
 	endTime?: DateTime | undefined;
 	startTime?: DateTime | undefined;
+	reps: number;
+	setReps: Dispatch<SetStateAction<number>>;
 };
 
 export const RepEvent: React.FC<Props> = ({
@@ -23,8 +25,9 @@ export const RepEvent: React.FC<Props> = ({
 	icon,
 	startTime,
 	endTime,
+	reps,
+	setReps,
 }) => {
-	const [reps, setReps] = useState(0);
 	const [percentage, setPercentage] = useState(0);
 	const [done, setDone] = useState(!active);
 

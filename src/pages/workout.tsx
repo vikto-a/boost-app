@@ -37,6 +37,10 @@ const Workout: NextPage = () => {
 		DateTime | undefined
 	>(undefined);
 
+	const [pullups, setPullups] = useState(0);
+	const [pushups, setPushups] = useState(0);
+	const [squats, setSquats] = useState(0);
+
 	return (
 		<Page title="Murph Workout">
 			<Center>
@@ -64,6 +68,8 @@ const Workout: NextPage = () => {
 								active={stage === Stage.Exercises}
 								endTime={exerciseEndTime}
 								startTime={firstSprintEndTime}
+								reps={pullups}
+								setReps={setPullups}
 							/>
 							<RepEvent
 								icon={GiChestArmor}
@@ -73,6 +79,8 @@ const Workout: NextPage = () => {
 								active={stage === Stage.Exercises}
 								endTime={exerciseEndTime}
 								startTime={firstSprintEndTime}
+								reps={pushups}
+								setReps={setPushups}
 							/>
 							<RepEvent
 								icon={GiLeg}
@@ -82,13 +90,15 @@ const Workout: NextPage = () => {
 								active={stage === Stage.Exercises}
 								endTime={exerciseEndTime}
 								startTime={firstSprintEndTime}
+								reps={squats}
+								setReps={setSquats}
 							/>
 						</>
 					)}
 					{stage > Stage.Exercises && (
 						<Event
 							icon={GiCheckMark}
-							quantity="600"
+							quantity="600 reps"
 							name="Exercises"
 							color={Color.Green}
 							active={stage === Stage.Exercises}
@@ -138,7 +148,10 @@ const Workout: NextPage = () => {
 									return ++prev;
 								})
 							}
-							// disabled
+							disabled={
+								stage === Stage.Exercises &&
+								(pullups !== 100 || pushups !== 200 || squats !== 300)
+							}
 							className="flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black shadow-2xl shadow-purple-500 transition hover:bg-purple-300 disabled:cursor-not-allowed disabled:bg-neutral-900 disabled:text-neutral-700 disabled:shadow-none"
 						>
 							{stage !== Stage.LastSprint ? (
