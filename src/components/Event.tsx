@@ -1,4 +1,6 @@
 import { Color } from '@type';
+import { DateTime } from 'luxon';
+import { GiCheckMark } from 'react-icons/gi';
 import type { IconType } from 'react-icons';
 import React from 'react';
 
@@ -8,6 +10,8 @@ type Props = {
 	color: Color;
 	icon: IconType;
 	active?: boolean;
+	endTime?: DateTime | undefined;
+	startTime?: DateTime | undefined;
 };
 
 export const Event: React.FC<Props> = ({
@@ -16,6 +20,8 @@ export const Event: React.FC<Props> = ({
 	name,
 	color,
 	icon,
+	startTime,
+	endTime,
 }) => {
 	let borderColor = '';
 	let iconColor = '';
@@ -44,6 +50,13 @@ export const Event: React.FC<Props> = ({
 			break;
 	}
 
+	const diff = endTime?.diff(startTime || DateTime.now(), [
+		'hours',
+		'minutes',
+		'seconds',
+		'milliseconds',
+	]);
+
 	return (
 		<div
 			className={`z-30 flex w-full items-center space-x-6 rounded-md border-l-8 bg-neutral-900 py-3 px-6 shadow-2xl ${
@@ -51,9 +64,13 @@ export const Event: React.FC<Props> = ({
 			} ${active && shadowColor}`}
 		>
 			<div className={`${active ? iconColor : 'text-neutral-800'}`}>
-				{React.createElement(icon, { size: 30 })}
+				{endTime ? (
+					<GiCheckMark size={30} />
+				) : (
+					<>{React.createElement(icon, { size: 30 })}</>
+				)}
 			</div>
-			<div className={!active ? 'text-neutral-400' : ''}>
+			<div className={`flex-1 ${!active ? 'text-neutral-400' : ''}}`}>
 				<h2 className="text-lg font-bold">{quantity}</h2>
 				<h3
 					className={`text-sm ${
@@ -63,6 +80,29 @@ export const Event: React.FC<Props> = ({
 					{name}
 				</h3>
 			</div>
+			{endTime && (
+				<div className="font-mono">
+					<span
+						className={`${
+							diff?.toObject().hours === 0 ? 'text-neutral-500' : 'text-white'
+						}`}
+					>
+						{String(diff?.toObject().hours).padStart(2, '0')}:
+					</span>
+					<span
+						className={`${
+							diff?.toObject().minutes === 0 && diff?.toObject().hours === 0
+								? 'text-neutral-500'
+								: 'text-white'
+						}`}
+					>
+						{String(diff?.toObject().minutes).padStart(2, '0')}:
+					</span>
+					<span>{String(diff?.toObject().seconds).padStart(2, '0')}</span>
+					<span>.</span>
+					<span>{String(diff?.toObject().milliseconds).padStart(3, '0')}</span>
+				</div>
+			)}
 		</div>
 	);
 };

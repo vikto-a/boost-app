@@ -2,6 +2,8 @@ export { Btn } from './Btn';
 export { Event } from './Event';
 export { Exercise } from './Exercise';
 export { Hero } from './Hero';
+export { IncrementBtn } from './IncrementBtn';
 export { Navbar } from './Navbar';
 export { NavLink } from './NavLink';
+export { RepEvent } from './RepEvent';
 export { Timer } from './Timer';
