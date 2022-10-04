@@ -59,7 +59,7 @@ export const Event: React.FC<Props> = ({
 
 	return (
 		<div
-			className={`z-30 flex w-full items-center space-x-6 rounded-md border-l-8 bg-neutral-900 py-3 px-6 shadow-2xl ${
+			className={`flex w-full items-center space-x-6 rounded-md border-l-8 bg-neutral-900 py-3 px-6 shadow-2xl ${
 				active ? borderColor : 'border-neutral-800'
 			} ${active && shadowColor}`}
 		>

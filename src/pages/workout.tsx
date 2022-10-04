@@ -6,9 +6,7 @@ import {
 	GiChestArmor,
 	GiLeg,
 	GiNextButton,
-	GiPreviousButton,
 	GiRun,
-	GiTrashCan,
 } from 'react-icons/gi';
 
 import { Color } from '@type';
@@ -42,10 +40,8 @@ const Workout: NextPage = () => {
 	return (
 		<Page title="Murph Workout">
 			<Center>
-				<Link href="/" className="flex items-center gap-1 text-neutral-400">
-					<GiTrashCan size={20} />
-					<span>Cancel</span>
-				</Link>
+				<Timer start={start} running={running} />
+
 				<div className="flex w-full flex-col gap-6">
 					{stage >= Stage.FirstSprint && (
 						<Event
@@ -113,34 +109,13 @@ const Workout: NextPage = () => {
 					)}
 				</div>
 
-				<Timer start={start} running={running} />
-				<div className="flex w-full items-center justify-between">
-					{stage > Stage.FirstSprint && (
-						<button
-							onClick={() =>
-								setStage((prev) => {
-									switch (stage) {
-										case Stage.FirstSprint:
-											setFirstSprintEndTime(undefined);
-											setExerciseEndTime(undefined);
-											setLastSprintEndTime(undefined);
-											break;
-										case Stage.Exercises:
-											setFirstSprintEndTime(undefined);
-											setExerciseEndTime(undefined);
-											setLastSprintEndTime(undefined);
-										case Stage.LastSprint:
-											setLastSprintEndTime(undefined);
-									}
-									return --prev;
-								})
-							}
-							className="flex items-center gap-1 py-3 text-neutral-400"
-						>
-							<GiPreviousButton size={20} />
-							<span>Back</span>
-						</button>
-					)}
+				<Link
+					href="/"
+					className="fixed left-6 bottom-6 z-30 rounded-md bg-neutral-700 py-3 px-6 text-neutral-300 transition hover:bg-neutral-700"
+				>
+					Cancel
+				</Link>
+				{stage < Stage.Finish && (
 					<button
 						onClick={() =>
 							setStage((prev) => {
@@ -164,12 +139,21 @@ const Workout: NextPage = () => {
 							})
 						}
 						// disabled
-						className="flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black shadow-xl shadow-purple-500 disabled:cursor-not-allowed disabled:bg-neutral-900 disabled:text-neutral-700 disabled:shadow-none"
+						className="fixed right-6 bottom-6 z-30 flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black transition disabled:cursor-not-allowed disabled:bg-neutral-900 disabled:text-neutral-700 disabled:shadow-none"
 					>
-						<span className="font-bold">Next</span>
-						<GiNextButton size={25} />
+						{stage !== Stage.LastSprint ? (
+							<>
+								<span className="font-bold">Next</span>
+								<GiNextButton size={20} />
+							</>
+						) : (
+							<>
+								<span className="font-bold">Finish</span>
+								<GiCheckMark size={20} />
+							</>
+						)}
 					</button>
-				</div>
+				)}
 
 				{stage < Stage.LastSprint && (
 					<div className="flex w-full flex-col gap-6">

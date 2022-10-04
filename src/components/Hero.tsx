@@ -11,7 +11,7 @@ import { Color } from '@type';
 
 export const Hero: React.FC = () => {
 	return (
-		<section className="container mx-auto grid min-h-screen items-center gap-12 px-6 py-24 md:grid-cols-2">
+		<section className="container mx-auto grid min-h-screen items-center gap-12 px-6 py-36 md:grid-cols-2">
 			<div className="flex flex-col items-center gap-3 md:items-start">
 				<h1 className="text-center text-2xl font-bold md:text-left">
 					Murph Workout
