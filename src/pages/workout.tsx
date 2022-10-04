@@ -16,9 +16,9 @@ import type { NextPage } from 'next';
 import { useState } from 'react';
 
 enum Stage {
-	FirstSprint,
-	Exercises,
-	LastSprint,
+	FirstSprint = 1,
+	Exercises = 2,
+	LastSprint = 3,
 }
 
 const Workout: NextPage = () => {
@@ -28,22 +28,62 @@ const Workout: NextPage = () => {
 	return (
 		<Page title="Murph Workout">
 			<Center>
-				<Event
-					icon={GiRun}
-					quantity="1 Mile"
-					name="Sprint"
-					color={Color.Green}
-					active
-				/>
+				<div className="flex w-full flex-col gap-6">
+					{stage >= Stage.FirstSprint && (
+						<Event
+							icon={GiRun}
+							quantity="1 Mile"
+							name="Sprint"
+							color={Color.Green}
+							active={stage === Stage.FirstSprint}
+						/>
+					)}
+					{stage >= Stage.Exercises && (
+						<div className="grid w-full grid-cols-3 gap-6">
+							<Event
+								icon={GiBiceps}
+								quantity="100 Reps"
+								name="Pull Ups"
+								color={Color.Red}
+								active={stage === Stage.Exercises}
+							/>
+							<Event
+								icon={GiChestArmor}
+								quantity="200 Reps"
+								name="Push Ups"
+								color={Color.Blue}
+								active={stage === Stage.Exercises}
+							/>
+							<Event
+								icon={GiLeg}
+								quantity="300 Reps"
+								name="Squats"
+								color={Color.Yellow}
+								active={stage === Stage.Exercises}
+							/>
+						</div>
+					)}
+					{stage >= Stage.LastSprint && (
+						<Event
+							icon={GiRun}
+							quantity="1 Mile"
+							name="Sprint"
+							color={Color.Green}
+							active={stage === Stage.LastSprint}
+						/>
+					)}
+				</div>
 
-				<Timer start={start} />
-
-				<div className="flex w-full items-center justify-between">
+				<div className="grid w-full grid-cols-[auto_1fr_auto] gap-3">
 					<Link href="/" className="flex items-center gap-1 text-neutral-400">
 						<GiTrashCan size={20} />
 						<span>Cancel</span>
 					</Link>
+
+					<Timer start={start} />
+
 					<button
+						onClick={() => setStage((prev) => ++prev)}
 						// disabled
 						className="flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black shadow-xl shadow-purple-500 disabled:cursor-not-allowed disabled:bg-neutral-900 disabled:text-neutral-700 disabled:shadow-none"
 					>
@@ -52,35 +92,41 @@ const Workout: NextPage = () => {
 					</button>
 				</div>
 
-				<div className="flex w-full flex-col gap-6">
-					<span className="text-center text-sm text-neutral-400">Up Next</span>
-					<div className="grid w-full grid-cols-3 gap-6">
+				{stage < Stage.LastSprint && (
+					<div className="flex w-full flex-col gap-6">
+						<span className="text-center text-sm text-neutral-400">
+							Up Next
+						</span>
+						{stage < Stage.Exercises && (
+							<div className="grid w-full grid-cols-3 gap-6">
+								<Event
+									icon={GiBiceps}
+									quantity="100 Reps"
+									name="Pull Ups"
+									color={Color.Red}
+								/>
+								<Event
+									icon={GiChestArmor}
+									quantity="200 Reps"
+									name="Push Ups"
+									color={Color.Blue}
+								/>
+								<Event
+									icon={GiLeg}
+									quantity="300 Reps"
+									name="Squats"
+									color={Color.Yellow}
+								/>
+							</div>
+						)}
 						<Event
-							icon={GiBiceps}
-							quantity="100 Reps"
-							name="Pull Ups"
-							color={Color.Red}
-						/>
-						<Event
-							icon={GiChestArmor}
-							quantity="200 Reps"
-							name="Push Ups"
-							color={Color.Blue}
-						/>
-						<Event
-							icon={GiLeg}
-							quantity="300 Reps"
-							name="Squats"
-							color={Color.Yellow}
+							icon={GiRun}
+							quantity="1 Mile"
+							name="Sprint"
+							color={Color.Green}
 						/>
 					</div>
-					<Event
-						icon={GiRun}
-						quantity="1 Mile"
-						name="Sprint"
-						color={Color.Green}
-					/>
-				</div>
+				)}
 			</Center>
 		</Page>
 	);
