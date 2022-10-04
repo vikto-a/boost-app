@@ -1,12 +1,15 @@
+import type { IconType } from 'react-icons';
 import Link from 'next/link';
+import React from 'react';
 import { useRouter } from 'next/router';
 
 type Props = {
 	to: string;
 	children: string;
+	icon: IconType;
 };
 
-export const NavLink: React.FC<Props> = ({ to, children }) => {
+export const NavLink: React.FC<Props> = ({ to, children, icon }) => {
 	const router = useRouter();
 
 	const active = router.pathname === to;
@@ -14,11 +17,12 @@ export const NavLink: React.FC<Props> = ({ to, children }) => {
 	return (
 		<Link
 			href={to}
-			className={`px-6 py-3 transition ${
+			className={`flex items-center gap-3 px-6 py-3 transition ${
 				active ? 'font-bold text-purple-400' : 'hover:text-neutral-300'
 			}`}
 		>
-			{children}
+			{React.createElement(icon, { size: 20 })}
+			<span>{children}</span>
 		</Link>
 	);
 };
