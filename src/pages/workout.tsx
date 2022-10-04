@@ -23,9 +23,9 @@ enum Stage {
 }
 
 const Workout: NextPage = () => {
-	const [start, setStart] = useState(DateTime.now());
+	const [start] = useState(DateTime.now());
 	const [stage, setStage] = useState(Stage.FirstSprint);
-	const [running, setRunning] = useState(true);
+	const [timerRunning, setTimerRunning] = useState(true);
 
 	const [firstSprintEndTime, setFirstSprintEndTime] = useState<
 		DateTime | undefined
@@ -44,7 +44,7 @@ const Workout: NextPage = () => {
 	return (
 		<Page title="Murph Workout">
 			<Center>
-				<Timer start={start} running={running} />
+				<Timer start={start} running={timerRunning} />
 
 				<div className="flex w-full flex-col gap-3">
 					{stage >= Stage.FirstSprint && (
@@ -141,7 +141,7 @@ const Workout: NextPage = () => {
 											break;
 										case Stage.LastSprint:
 											setLastSprintEndTime(DateTime.now());
-											setRunning(false);
+											setTimerRunning(false);
 											break;
 									}
 
