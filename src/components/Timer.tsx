@@ -36,7 +36,11 @@ export const Timer: React.FC<Props> = ({ start }) => {
 			<span className={`${hours === 0 ? 'text-neutral-500' : 'text-white'}`}>
 				{String(hours).padStart(2, '0')}:
 			</span>
-			<span className={`${minutes === 0 ? 'text-neutral-500' : 'text-white'}`}>
+			<span
+				className={`${
+					minutes === 0 && hours === 0 ? 'text-neutral-500' : 'text-white'
+				}`}
+			>
 				{String(minutes).padStart(2, '0')}:
 			</span>
 			<span>{String(seconds).padStart(2, '0')}</span>
