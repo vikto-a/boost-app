@@ -42,7 +42,7 @@ const Workout: NextPage = () => {
 			<Center>
 				<Timer start={start} running={running} />
 
-				<div className="flex w-full flex-col gap-6">
+				<div className="flex w-full flex-col gap-3">
 					{stage >= Stage.FirstSprint && (
 						<Event
 							icon={GiRun}
@@ -108,60 +108,61 @@ const Workout: NextPage = () => {
 						/>
 					)}
 				</div>
-
-				<Link
-					href="/"
-					className="fixed left-6 bottom-6 z-30 rounded-md bg-neutral-700 py-3 px-6 text-neutral-300 transition hover:bg-neutral-700"
-				>
-					Cancel
-				</Link>
-				{stage < Stage.Finish && (
-					<button
-						onClick={() =>
-							setStage((prev) => {
-								switch (stage) {
-									case Stage.FirstSprint:
-										setFirstSprintEndTime(DateTime.now());
-										setExerciseEndTime(undefined);
-										setLastSprintEndTime(undefined);
-										break;
-									case Stage.Exercises:
-										setExerciseEndTime(DateTime.now());
-										setLastSprintEndTime(undefined);
-										break;
-									case Stage.LastSprint:
-										setLastSprintEndTime(DateTime.now());
-										setRunning(false);
-										break;
-								}
-
-								return ++prev;
-							})
-						}
-						// disabled
-						className="fixed right-6 bottom-6 z-30 flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black transition disabled:cursor-not-allowed disabled:bg-neutral-900 disabled:text-neutral-700 disabled:shadow-none"
+				<div className="flex w-full items-center justify-between">
+					<Link
+						href="/"
+						className="rounded-md bg-neutral-900 py-3 px-6 text-neutral-300 transition hover:bg-neutral-800"
 					>
-						{stage !== Stage.LastSprint ? (
-							<>
-								<span className="font-bold">Next</span>
-								<GiNextButton size={20} />
-							</>
-						) : (
-							<>
-								<span className="font-bold">Finish</span>
-								<GiCheckMark size={20} />
-							</>
-						)}
-					</button>
-				)}
+						Cancel
+					</Link>
+					{stage < Stage.Finish && (
+						<button
+							onClick={() =>
+								setStage((prev) => {
+									switch (stage) {
+										case Stage.FirstSprint:
+											setFirstSprintEndTime(DateTime.now());
+											setExerciseEndTime(undefined);
+											setLastSprintEndTime(undefined);
+											break;
+										case Stage.Exercises:
+											setExerciseEndTime(DateTime.now());
+											setLastSprintEndTime(undefined);
+											break;
+										case Stage.LastSprint:
+											setLastSprintEndTime(DateTime.now());
+											setRunning(false);
+											break;
+									}
+
+									return ++prev;
+								})
+							}
+							// disabled
+							className="flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black shadow-2xl shadow-purple-500 transition hover:bg-purple-300 disabled:cursor-not-allowed disabled:bg-neutral-900 disabled:text-neutral-700 disabled:shadow-none"
+						>
+							{stage !== Stage.LastSprint ? (
+								<>
+									<span className="font-bold">Next</span>
+									<GiNextButton size={20} />
+								</>
+							) : (
+								<>
+									<span className="font-bold">Finish</span>
+									<GiCheckMark size={20} />
+								</>
+							)}
+						</button>
+					)}
+				</div>
 
 				{stage < Stage.LastSprint && (
-					<div className="flex w-full flex-col gap-6">
+					<div className="flex w-full flex-col gap-3">
 						<span className="text-center text-sm text-neutral-400">
 							Up Next
 						</span>
 						{stage < Stage.Exercises && (
-							<div className="grid gap-6 md:grid-cols-3">
+							<div className="grid gap-3 md:grid-cols-3">
 								<Event
 									icon={GiBiceps}
 									quantity="100 Reps"

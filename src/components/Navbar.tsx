@@ -5,9 +5,11 @@ import { Popover } from '@headlessui/react';
 
 export const Navbar: React.FC = () => {
 	return (
-		<nav className="fixed top-6 right-6 left-6 z-40 flex items-center justify-between rounded-md bg-purple-400 px-6 text-black">
+		<nav className="absolute top-6 right-6 left-6 z-40 flex items-center justify-between rounded-md border-l-8 border-purple-400 bg-neutral-900 px-6 shadow-2xl shadow-purple-500">
 			<div className="flex items-center gap-3">
-				<GiRoundStar size={30} />
+				<span className="text-purple-400">
+					<GiRoundStar size={30} />
+				</span>
 				<span className="py-3 text-xl font-bold uppercase">Murph</span>
 			</div>
 
@@ -24,7 +26,7 @@ export const Navbar: React.FC = () => {
 
 				<Popover.Overlay className="fixed inset-0 bg-black opacity-70" />
 
-				<Popover.Panel className="absolute top-20 left-0 right-0 z-40 rounded-md bg-purple-400 py-3">
+				<Popover.Panel className="fixed top-6 left-6 right-6 z-40 rounded-md border-l-8 border-purple-400 bg-neutral-900 py-3">
 					<div className="flex flex-col">
 						<NavLink to="/">Home</NavLink>
 						<NavLink to="/leaderboard">Leaderboard</NavLink>
