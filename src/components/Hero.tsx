@@ -5,7 +5,7 @@ import {
 	GiLeg,
 	GiPlayButton,
 	GiRun,
-} from 'react-icons/Gi';
+} from 'react-icons/gi';
 
 import { Color } from '@type';
 

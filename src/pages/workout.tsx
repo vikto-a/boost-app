@@ -1,6 +1,7 @@
+import { Center, Page } from '@layouts';
+
 import { DateTime } from 'luxon';
 import type { NextPage } from 'next';
-import { Page } from '@layouts';
 import { Timer } from '@components';
 import { useState } from 'react';
 
@@ -9,11 +10,11 @@ const Workout: NextPage = () => {
 
 	return (
 		<Page title="Murph Workout">
-			<div>
+			<Center>
 				<h1>Some Text</h1>
 
 				<Timer start={start} />
-			</div>
+			</Center>
 		</Page>
 	);
 };
