@@ -23,7 +23,7 @@ export const Hero: React.FC = () => {
 					have lost their lives serving their country.
 				</p>
 
-				<Btn to="/begin" icon={GiPlayButton}>
+				<Btn to="/workout" icon={GiPlayButton}>
 					Start
 				</Btn>
 			</div>
