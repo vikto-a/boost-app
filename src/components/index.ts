@@ -3,3 +3,4 @@ export { Exercise } from './Exercise';
 export { Hero } from './Hero';
 export { Navbar } from './Navbar';
 export { NavLink } from './NavLink';
+export { Timer } from './Timer';

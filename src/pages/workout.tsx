@@ -1,21 +1,19 @@
+import { DateTime } from 'luxon';
 import type { NextPage } from 'next';
 import { Page } from '@layouts';
-import { trpc } from '../utils/trpc';
+import { Timer } from '@components';
+import { useState } from 'react';
 
 const Workout: NextPage = () => {
-	const hello = trpc.useQuery(['example.hello', { text: 'from tRPC' }]);
-
-	/*
-	
-	- get datetime
-	- calc time since date
-	- display time to screen
-	
-	*/
+	const [start, setStart] = useState(DateTime.now());
 
 	return (
 		<Page title="Murph Workout">
-			<h1>{hello.data ? hello.data.greeting : 'loading...'}</h1>
+			<div>
+				<h1>Some Text</h1>
+
+				<Timer start={start} />
+			</div>
 		</Page>
 	);
 };
