@@ -25,14 +25,14 @@ export const Timer: React.FC<Props> = ({ start }) => {
 			setMinutes(diff.toObject().minutes);
 			setSeconds(diff.toObject().seconds);
 			setMilliseconds(diff.toObject().milliseconds);
-		}, 1);
+		}, 100);
 		return () => {
 			clearInterval(interval);
 		};
 	}, []);
 
 	return (
-		<div className="font-mono text-5xl">
+		<div className="mx-auto font-mono text-5xl">
 			<span className={`${hours === 0 ? 'text-neutral-500' : 'text-white'}`}>
 				{String(hours).padStart(2, '0')}:
 			</span>
@@ -45,7 +45,10 @@ export const Timer: React.FC<Props> = ({ start }) => {
 			</span>
 			<span>{String(seconds).padStart(2, '0')}</span>
 			<span>.</span>
-			<span>{String(milliseconds).padStart(3, '0')}</span>
+			<span>
+				{String(milliseconds).charAt(0)}
+				{/* {String(milliseconds).padStart(3, '0')} */}
+			</span>
 		</div>
 	);
 };
