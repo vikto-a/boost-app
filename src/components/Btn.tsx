@@ -15,7 +15,7 @@ export const Btn: React.FC<Props> = ({ to, children, icon }) => {
 			className="flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black shadow-2xl shadow-purple-500"
 		>
 			<span className="font-bold">{children}</span>
-			{React.createElement(icon, { size: 25 })}
+			{React.createElement(icon, { size: 20 })}
 		</Link>
 	);
 };
