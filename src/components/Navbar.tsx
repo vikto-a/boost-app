@@ -1,34 +1,44 @@
 import {
+	GiDogHouse,
 	GiHamburgerMenu,
-	GiHouse,
+	GiJumpingDog,
+	GiLabradorHead,
 	GiLaurelsTrophy,
-	GiSharpedTeethSkull,
-	GiSkeletonKey,
+	GiSittingDog,
 } from 'react-icons/gi';
 
 import { NavLink } from '@components';
 import { Popover } from '@headlessui/react';
+import { useSession } from 'next-auth/react';
 
 export const Navbar: React.FC = () => {
+	const { data: session } = useSession();
+
 	return (
 		<nav className="absolute top-6 right-6 left-6 z-40 flex items-center justify-between rounded-md border-l-8 border-purple-400 bg-neutral-900 px-6 shadow-2xl shadow-purple-500">
 			<div className="flex items-center gap-3">
 				<span className="text-purple-400">
-					<GiSharpedTeethSkull size={30} />
+					<GiLabradorHead size={30} />
 				</span>
 				<span className="py-3 text-xl font-bold uppercase">Murph</span>
 			</div>
 
 			<div className="hidden items-center sm:flex">
-				<NavLink to="/" icon={GiHouse}>
+				<NavLink to="/" icon={GiDogHouse}>
 					Home
 				</NavLink>
 				<NavLink to="/leaderboard" icon={GiLaurelsTrophy}>
 					Leaderboard
 				</NavLink>
-				<NavLink to="/login" icon={GiSkeletonKey}>
-					Login
-				</NavLink>
+				{session ? (
+					<NavLink to="/me" icon={GiSittingDog}>
+						Profile
+					</NavLink>
+				) : (
+					<NavLink to="/login" icon={GiJumpingDog}>
+						Login
+					</NavLink>
+				)}
 			</div>
 
 			<Popover className="sm:hidden">
@@ -40,15 +50,21 @@ export const Navbar: React.FC = () => {
 
 				<Popover.Panel className="fixed top-6 left-6 right-6 z-40 rounded-md border-l-8 border-purple-400 bg-neutral-900 py-3">
 					<div className="flex flex-col">
-						<NavLink to="/" icon={GiHouse}>
+						<NavLink to="/" icon={GiDogHouse}>
 							Home
 						</NavLink>
 						<NavLink to="/leaderboard" icon={GiLaurelsTrophy}>
 							Leaderboard
 						</NavLink>
-						<NavLink to="/login" icon={GiSkeletonKey}>
-							Login
-						</NavLink>
+						{session ? (
+							<NavLink to="/me" icon={GiSittingDog}>
+								Profile
+							</NavLink>
+						) : (
+							<NavLink to="/login" icon={GiJumpingDog}>
+								Login
+							</NavLink>
+						)}
 					</div>
 				</Popover.Panel>
 			</Popover>
