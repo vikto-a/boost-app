@@ -1,5 +1,6 @@
+import { Footer, Navbar } from '@components';
+
 import Head from 'next/head';
-import { Navbar } from '@components';
 
 type Props = {
 	children: React.ReactNode;
@@ -18,6 +19,8 @@ export const Page: React.FC<Props> = ({ children, title }) => {
 			<Navbar />
 
 			<main>{children}</main>
+
+			<Footer />
 		</>
 	);
 };
