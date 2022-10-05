@@ -150,13 +150,15 @@ const Workout: NextPage = () => {
 												setLastSprintEndTime(DateTime.now());
 												setTimerRunning(false);
 
-												// save data to db
-												mutation.mutate({
-													start: start.toJSDate(),
-													firstSprintEndTime: firstSprintEndTime!.toJSDate(),
-													exerciseEndTime: exerciseEndTime!.toJSDate(),
-													lastSprintEndTime: DateTime.now().toJSDate(),
-												});
+												// save data to db if logged in
+												if (session) {
+													mutation.mutate({
+														start: start.toJSDate(),
+														firstSprintEndTime: firstSprintEndTime!.toJSDate(),
+														exerciseEndTime: exerciseEndTime!.toJSDate(),
+														lastSprintEndTime: DateTime.now().toJSDate(),
+													});
+												}
 
 												break;
 										}
