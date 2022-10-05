@@ -4,6 +4,7 @@ export { Exercise } from './Exercise';
 export { Footer } from './Footer';
 export { Hero } from './Hero';
 export { IncrementBtn } from './IncrementBtn';
+export { MurphCard } from './MurphCard';
 export { Navbar } from './Navbar';
 export { NavLink } from './NavLink';
 export { RepEvent } from './RepEvent';
