@@ -30,6 +30,10 @@ const Me: NextPage = () => {
 					<div className="flex-1">
 						<h2>Total Murphs</h2>
 						<h3>23</h3>
+						<h2>Average Time</h2>
+						<h3>23</h3>
+						<h2>Fastest Time</h2>
+						<h3>23</h3>
 					</div>
 					<div className="flex flex-col gap-6">
 						<Btn to="/workout" icon={GiPlayButton}>

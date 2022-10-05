@@ -16,7 +16,7 @@ export const WelcomeUser: React.FC = () => {
 					/>
 				)}
 			</div>
-			<h1 className="flex flex-col text-3xl font-bold">
+			<h1 className="flex flex-col text-xl font-bold">
 				<span className="text-base font-normal text-neutral-500">Welcome</span>
 				<span>{session?.user?.name}</span>
 			</h1>
