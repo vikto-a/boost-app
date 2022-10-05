@@ -20,15 +20,18 @@ const Me: NextPage = () => {
 
 	if (!session) return null;
 
-	console.log(session.user?.image);
-
 	return (
 		<Page title="Murph Profile">
 			<Center>
 				<h1 className="text-2xl font-bold">Welcome {session.user?.name}</h1>
 				<div className="relative h-16 w-16 rounded-full bg-neutral-900">
 					{session.user?.image && (
-						<Image src={session.user?.image} fill alt="Profile picture" />
+						<Image
+							src={session.user?.image}
+							fill
+							alt="Profile picture"
+							sizes="64px"
+						/>
 					)}
 				</div>
 
