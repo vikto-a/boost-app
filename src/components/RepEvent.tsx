@@ -116,6 +116,7 @@ export const RepEvent: React.FC<Props> = ({
 				<div className="flex flex-1 gap-3">
 					{[50, 25, 10, 5].map((step) => (
 						<IncrementBtn
+							key={step}
 							onClick={() =>
 								setReps((prev) => {
 									let newVal = prev + quantity / step;
