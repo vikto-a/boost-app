@@ -13,6 +13,7 @@ import { Color } from '@type';
 import { DateTime } from 'luxon';
 import Link from 'next/link';
 import type { NextPage } from 'next';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 enum Stage {
@@ -40,6 +41,8 @@ const Workout: NextPage = () => {
 	const [pullups, setPullups] = useState(0);
 	const [pushups, setPushups] = useState(0);
 	const [squats, setSquats] = useState(0);
+
+	const { data: session } = useSession();
 
 	return (
 		<Page title="Murph Workout">
@@ -144,14 +147,14 @@ const Workout: NextPage = () => {
 												setLastSprintEndTime(DateTime.now());
 												setTimerRunning(false);
 
-												// useEffect run when running is false
 												// save data to db
-												console.table([
-													start.toISO(),
-													firstSprintEndTime?.toISO(),
-													exerciseEndTime?.toISO(),
-													lastSprintEndTime?.toISO(),
-												]);
+												console.log({
+													start: start.toISO(),
+													firstSprintEndTime: firstSprintEndTime?.toISO(),
+													exerciseEndTime: exerciseEndTime?.toISO(),
+													lastSprintEndTime: DateTime.now().toISO(),
+													userId: session?.user?.id,
+												});
 												break;
 										}
 
