@@ -119,53 +119,55 @@ const Workout: NextPage = () => {
 					)}
 				</div>
 				<div className="flex w-full items-center justify-between">
-					<Link
-						href="/"
-						className="rounded-md bg-neutral-900 py-3 px-6 text-neutral-300 transition hover:bg-neutral-800"
-					>
-						Cancel
-					</Link>
 					{stage < Stage.Finish && (
-						<button
-							onClick={() =>
-								setStage((prev) => {
-									switch (stage) {
-										case Stage.FirstSprint:
-											setFirstSprintEndTime(DateTime.now());
-											setExerciseEndTime(undefined);
-											setLastSprintEndTime(undefined);
-											break;
-										case Stage.Exercises:
-											setExerciseEndTime(DateTime.now());
-											setLastSprintEndTime(undefined);
-											break;
-										case Stage.LastSprint:
-											setLastSprintEndTime(DateTime.now());
-											setTimerRunning(false);
-											break;
-									}
+						<>
+							<Link
+								href="/"
+								className="rounded-md bg-neutral-900 py-3 px-6 text-neutral-300 transition hover:bg-neutral-800"
+							>
+								Cancel
+							</Link>
+							<button
+								onClick={() =>
+									setStage((prev) => {
+										switch (stage) {
+											case Stage.FirstSprint:
+												setFirstSprintEndTime(DateTime.now());
+												setExerciseEndTime(undefined);
+												setLastSprintEndTime(undefined);
+												break;
+											case Stage.Exercises:
+												setExerciseEndTime(DateTime.now());
+												setLastSprintEndTime(undefined);
+												break;
+											case Stage.LastSprint:
+												setLastSprintEndTime(DateTime.now());
+												setTimerRunning(false);
+												break;
+										}
 
-									return ++prev;
-								})
-							}
-							disabled={
-								stage === Stage.Exercises &&
-								(pullups !== 100 || pushups !== 200 || squats !== 300)
-							}
-							className="flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black shadow-2xl shadow-purple-500 transition hover:bg-purple-300 disabled:cursor-not-allowed disabled:bg-neutral-900 disabled:text-neutral-700 disabled:shadow-none"
-						>
-							{stage !== Stage.LastSprint ? (
-								<>
-									<span className="font-bold">Next</span>
-									<GiNextButton size={20} />
-								</>
-							) : (
-								<>
-									<span className="font-bold">Finish</span>
-									<GiCheckMark size={20} />
-								</>
-							)}
-						</button>
+										return ++prev;
+									})
+								}
+								disabled={
+									stage === Stage.Exercises &&
+									(pullups !== 100 || pushups !== 200 || squats !== 300)
+								}
+								className="flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black shadow-2xl shadow-purple-500 transition hover:bg-purple-300 disabled:cursor-not-allowed disabled:bg-neutral-900 disabled:text-neutral-700 disabled:shadow-none"
+							>
+								{stage !== Stage.LastSprint ? (
+									<>
+										<span className="font-bold">Next</span>
+										<GiNextButton size={20} />
+									</>
+								) : (
+									<>
+										<span className="font-bold">Finish</span>
+										<GiCheckMark size={20} />
+									</>
+								)}
+							</button>
+						</>
 					)}
 				</div>
 
