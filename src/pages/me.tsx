@@ -42,7 +42,7 @@ const Me: NextPage = () => {
 						Begin Murph
 					</Btn>
 					<button
-						className="flex items-center gap-6 rounded-md border-l-8 border-red-400 bg-neutral-900 py-3 px-6 font-bold text-red-400 shadow-2xl shadow-red-500"
+						className="flex items-center gap-6 rounded-md border-l-8 border-red-400 bg-neutral-900 py-3 px-6 font-bold text-red-400 shadow-2xl shadow-red-500 transition hover:bg-neutral-800"
 						onClick={() => signOut()}
 					>
 						<GiCrossedBones size={30} />
