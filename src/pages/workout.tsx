@@ -143,6 +143,15 @@ const Workout: NextPage = () => {
 											case Stage.LastSprint:
 												setLastSprintEndTime(DateTime.now());
 												setTimerRunning(false);
+
+												// useEffect run when running is false
+												// save data to db
+												console.table([
+													start.toISO(),
+													firstSprintEndTime?.toISO(),
+													exerciseEndTime?.toISO(),
+													lastSprintEndTime?.toISO(),
+												]);
 												break;
 										}
 
