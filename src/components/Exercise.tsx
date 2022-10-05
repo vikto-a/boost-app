@@ -16,22 +16,22 @@ export const Exercise: React.FC<Props> = ({ quantity, name, color, icon }) => {
 
 	switch (color) {
 		case Color.Green:
-			borderColor = 'border-l-green-400';
+			borderColor = 'border-green-400';
 			iconColor = 'text-green-400';
 			shadowColor = 'shadow-green-500';
 			break;
 		case Color.Red:
-			borderColor = 'border-l-red-400';
+			borderColor = 'border-red-400';
 			iconColor = 'text-red-400';
 			shadowColor = 'shadow-red-500';
 			break;
 		case Color.Blue:
-			borderColor = 'border-l-blue-400';
+			borderColor = 'border-blue-400';
 			iconColor = 'text-blue-400';
 			shadowColor = 'shadow-blue-500';
 			break;
 		case Color.Yellow:
-			borderColor = 'border-l-yellow-400';
+			borderColor = 'border-yellow-400';
 			iconColor = 'text-yellow-400';
 			shadowColor = 'shadow-yellow-500';
 			break;

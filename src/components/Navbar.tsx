@@ -15,7 +15,7 @@ export const Navbar: React.FC = () => {
 	const { data: session } = useSession();
 
 	return (
-		<nav className="absolute top-6 right-6 left-6 z-40 flex items-center justify-between rounded-md border-l-8 border-purple-400 bg-neutral-900 px-6 shadow-2xl shadow-purple-500">
+		<nav className="absolute top-6 right-6 left-6 z-40 flex items-center justify-between rounded-md bg-neutral-900 px-6">
 			<div className="flex items-center gap-3">
 				<span className="text-purple-400">
 					<GiLabradorHead size={30} />
