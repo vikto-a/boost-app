@@ -9,3 +9,4 @@ export { Navbar } from './Navbar';
 export { NavLink } from './NavLink';
 export { RepEvent } from './RepEvent';
 export { Timer } from './Timer';
+export { WelcomeUser } from './WelcomeUser';

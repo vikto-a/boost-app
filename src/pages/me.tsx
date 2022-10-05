@@ -1,8 +1,7 @@
-import { Btn, MurphCard } from '@components';
+import { Btn, MurphCard, WelcomeUser } from '@components';
 import { GiCrossedBones, GiPlayButton } from 'react-icons/gi';
 import { signOut, useSession } from 'next-auth/react';
 
-import Image from 'next/future/image';
 import type { NextPage } from 'next';
 import { Page } from '@layouts';
 import { trpc } from 'utils/trpc';
@@ -25,26 +24,9 @@ const Me: NextPage = () => {
 
 	return (
 		<Page title="Murph Profile">
-			<div className="container mx-auto flex min-h-screen py-36 px-6">
+			<div className="container mx-auto flex min-h-screen gap-6 py-36 px-6">
 				<div className="flex flex-col gap-6">
-					<div className="flex items-center gap-6">
-						<div className="relative h-16 w-16 rounded-full bg-neutral-900">
-							{session.user?.image && (
-								<Image
-									src={session.user?.image}
-									fill
-									alt="Profile picture"
-									sizes="64px"
-								/>
-							)}
-						</div>
-						<h1 className="flex flex-col text-3xl font-bold">
-							<span className="text-base font-normal text-neutral-500">
-								Welcome
-							</span>
-							<span>{session.user?.name}</span>
-						</h1>
-					</div>
+					<WelcomeUser />
 					<div className="flex flex-col gap-6">
 						<Btn to="/workout" icon={GiPlayButton}>
 							Begin Murph
