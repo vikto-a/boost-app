@@ -21,4 +21,7 @@ export default defineNextConfig({
 	experimental: {
 		newNextLinkBehavior: true,
 	},
+	images: {
+		domains: ['lh3.googleusercontent.com'],
+	},
 });
