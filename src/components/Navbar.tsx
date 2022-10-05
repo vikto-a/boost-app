@@ -20,7 +20,7 @@ export const Navbar: React.FC = () => {
 				<span className="text-purple-400">
 					<GiLabradorHead size={30} />
 				</span>
-				<span className="py-3 text-xl font-bold uppercase">Murph</span>
+				<span className="py-3 text-xl font-bold">Murph</span>
 			</div>
 
 			<div className="hidden items-center sm:flex">

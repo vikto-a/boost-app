@@ -7,7 +7,7 @@ const Home: NextPage = () => {
 	const hello = trpc.useQuery(['example.hello', { text: 'from tRPC' }]);
 
 	return (
-		<Page title="Murph Workout">
+		<Page title="Murph">
 			<Hero />
 			{/* <h1>{hello.data ? hello.data.greeting : 'loading...'}</h1> */}
 		</Page>
