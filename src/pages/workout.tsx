@@ -13,6 +13,7 @@ import { Color } from '@type';
 import { DateTime } from 'luxon';
 import Link from 'next/link';
 import type { NextPage } from 'next';
+import { trpc } from 'utils/trpc';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
@@ -43,6 +44,8 @@ const Workout: NextPage = () => {
 	const [squats, setSquats] = useState(0);
 
 	const { data: session } = useSession();
+
+	const mutation = trpc.useMutation('murph.create');
 
 	return (
 		<Page title="Murph Workout">
@@ -148,13 +151,13 @@ const Workout: NextPage = () => {
 												setTimerRunning(false);
 
 												// save data to db
-												console.log({
-													start: start.toISO(),
-													firstSprintEndTime: firstSprintEndTime?.toISO(),
-													exerciseEndTime: exerciseEndTime?.toISO(),
-													lastSprintEndTime: DateTime.now().toISO(),
-													userId: session?.user?.id,
+												mutation.mutate({
+													start: start.toJSDate(),
+													firstSprintEndTime: firstSprintEndTime!.toJSDate(),
+													exerciseEndTime: exerciseEndTime!.toJSDate(),
+													lastSprintEndTime: DateTime.now().toJSDate(),
 												});
+
 												break;
 										}
 
