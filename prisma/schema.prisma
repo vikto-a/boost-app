@@ -10,8 +10,14 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
-    id String @id @default(cuid())
+model Murph {
+    id                 String   @id @default(cuid())
+    start              DateTime
+    firstSprintEndTime DateTime
+    exerciseEndTime    DateTime
+    lastSprintEndTime  DateTime
+    userId             String
+    user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 // Necessary for Next auth
@@ -49,6 +55,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    murphs        Murph[]
 }
 
 model VerificationToken {
