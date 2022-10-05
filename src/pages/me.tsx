@@ -1,7 +1,8 @@
 import { Center, Page } from '@layouts';
+import { GiCrossedBones, GiPlayButton } from 'react-icons/gi';
 import { signOut, useSession } from 'next-auth/react';
 
-import { GiCrossedBones } from 'react-icons/gi';
+import { Btn } from '@components';
 import type { NextPage } from 'next';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -21,8 +22,11 @@ const Me: NextPage = () => {
 	return (
 		<Page title="Murph Profile">
 			<Center>
+				<h1 className="text-2xl font-bold">Welcome {session.user?.name}</h1>
 				<div className="flex flex-col gap-6">
-					<h1>Welcome {session.user?.name}</h1>
+					<Btn to="/workout" icon={GiPlayButton}>
+						Begin Murph
+					</Btn>
 					<button
 						className="flex items-center gap-6 rounded-md border-l-8 border-red-400 bg-neutral-900 py-3 px-6 font-bold text-red-400 shadow-2xl shadow-red-500"
 						onClick={() => signOut()}
