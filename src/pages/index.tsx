@@ -9,7 +9,7 @@ const Home: NextPage = () => {
 	return (
 		<Page title="Murph Workout">
 			<Hero />
-			<h1>{hello.data ? hello.data.greeting : 'loading...'}</h1>
+			{/* <h1>{hello.data ? hello.data.greeting : 'loading...'}</h1> */}
 		</Page>
 	);
 };
