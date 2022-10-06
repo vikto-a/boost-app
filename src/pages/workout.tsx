@@ -1,14 +1,17 @@
+import { Btn, Event, RepEvent, Timer } from '@components';
 import { Center, Page } from '@layouts';
-import { Event, RepEvent, Timer } from '@components';
 import {
 	GiBiceps,
 	GiCheckMark,
 	GiChestArmor,
+	GiHouse,
 	GiLeg,
 	GiNextButton,
 	GiRun,
+	GiSittingDog,
 } from 'react-icons/gi';
 
+import Confetti from 'react-confetti';
 import { DateTime } from 'luxon';
 import Link from 'next/link';
 import type { NextPage } from 'next';
@@ -178,6 +181,21 @@ const Workout: NextPage = () => {
 								)}
 							</button>
 						</>
+					)}
+
+					{stage === Stage.Finish && (
+						<div className="mx-auto">
+							{session ? (
+								<Btn to="/me" icon={GiSittingDog}>
+									Profile
+								</Btn>
+							) : (
+								<Btn to="/home" icon={GiHouse}>
+									Home
+								</Btn>
+							)}
+							<Confetti />
+						</div>
 					)}
 				</div>
 
