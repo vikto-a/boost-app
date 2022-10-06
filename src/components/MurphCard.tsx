@@ -55,7 +55,7 @@ export const MurphCard: React.FC<Murph> = ({
 			)}
 			<div className="flex flex-col">
 				<div className="flex flex-row items-center justify-between">
-					{DateTime.fromJSDate(start).toFormat('dd LLL yyyy')}
+					{DateTime.fromJSDate(start).toFormat('dd LLL yyyy hh:mm:ss')}
 					<button
 						className="rounded-md border border-neutral-800 p-3 text-red-400 transition hover:bg-neutral-900"
 						onClick={() => {

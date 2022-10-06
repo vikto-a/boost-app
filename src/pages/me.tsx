@@ -8,21 +8,66 @@ import {
 } from 'react-icons/gi';
 import { useEffect, useState } from 'react';
 
+import { FaCaretDown } from 'react-icons/fa';
+import { Listbox } from '@headlessui/react';
+import { Murph } from '@prisma/client';
 import type { NextPage } from 'next';
 import { Page } from '@layouts';
 import { trpc } from 'utils/trpc';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
+type Sorting = 'newest' | 'oldest' | 'fastest' | 'slowest';
+
+const sortingOptions = ['newest', 'oldest', 'fastest', 'slowest'];
+
 const Me: NextPage = () => {
 	const { data: session } = useSession();
 	const router = useRouter();
+
 	const [avg, setAvg] = useState<Duration>(DateTime.now().diffNow());
 	const [fastest, setFastest] = useState<Duration>(DateTime.now().diffNow());
+	const [selectedSort, setSelectedSort] = useState<Sorting>('newest');
 
 	const murphs = trpc.useQuery(['murph.getMurphs']);
 	const totalMurphs = trpc.useQuery(['murph.getCount']);
 	const allTimes = trpc.useQuery(['murph.getTimes']);
+
+	const sortingMethods = {
+		newest: (a: Murph, b: Murph) => {
+			return (
+				DateTime.fromJSDate(b.start).toMillis() -
+				DateTime.fromJSDate(a.start).toMillis()
+			);
+		},
+
+		oldest: (a: Murph, b: Murph) => {
+			return (
+				DateTime.fromJSDate(a.start).toMillis() -
+				DateTime.fromJSDate(b.start).toMillis()
+			);
+		},
+		fastest: (a: Murph, b: Murph) => {
+			return (
+				DateTime.fromJSDate(a.lastSprintEndTime)
+					.diff(DateTime.fromJSDate(a.start))
+					.toMillis() -
+				DateTime.fromJSDate(b.lastSprintEndTime)
+					.diff(DateTime.fromJSDate(b.start))
+					.toMillis()
+			);
+		},
+		slowest: (a: Murph, b: Murph) => {
+			return (
+				DateTime.fromJSDate(b.lastSprintEndTime)
+					.diff(DateTime.fromJSDate(b.start))
+					.toMillis() -
+				DateTime.fromJSDate(a.lastSprintEndTime)
+					.diff(DateTime.fromJSDate(a.start))
+					.toMillis()
+			);
+		},
+	};
 
 	useEffect(() => {
 		if (!session) {
@@ -105,7 +150,29 @@ const Me: NextPage = () => {
 				<div className="grid gap-6">
 					<div className="flex items-end justify-between">
 						<h2 className="text-2xl font-bold">My Murphs</h2>
-						<p className="text-neutral-500">future sorting feature</p>
+
+						<Listbox
+							value={selectedSort}
+							onChange={setSelectedSort}
+							as="div"
+							className="relative"
+						>
+							<Listbox.Button className="flex w-64 items-center justify-between rounded-md border border-neutral-800 py-3 px-6 capitalize">
+								{selectedSort}
+								<FaCaretDown size={15} />
+							</Listbox.Button>
+							<Listbox.Options className="absolute left-0 right-0 z-50 mt-3 flex flex-col rounded-md border border-neutral-800 bg-black">
+								{sortingOptions.map((option) => (
+									<Listbox.Option
+										key={option}
+										value={option}
+										className="cursor-pointer p-3 capitalize transition hover:bg-neutral-800"
+									>
+										{option}
+									</Listbox.Option>
+								))}
+							</Listbox.Options>
+						</Listbox>
 					</div>
 					{murphs.data ? (
 						<>
@@ -118,9 +185,11 @@ const Me: NextPage = () => {
 								</div>
 							) : (
 								<div className="grid gap-6">
-									{murphs.data.map((murph) => (
-										<MurphCard key={murph.id} {...murph} />
-									))}
+									{murphs.data
+										.sort(sortingMethods[selectedSort])
+										.map((murph) => (
+											<MurphCard key={murph.id} {...murph} />
+										))}
 								</div>
 							)}
 						</>
