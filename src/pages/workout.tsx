@@ -9,7 +9,6 @@ import {
 	GiRun,
 } from 'react-icons/gi';
 
-import { Color } from '@type';
 import { DateTime } from 'luxon';
 import Link from 'next/link';
 import type { NextPage } from 'next';
@@ -58,7 +57,7 @@ const Workout: NextPage = () => {
 							icon={GiRun}
 							quantity="1 Mile"
 							name="Sprint"
-							color={Color.Green}
+							color="green"
 							active={stage === Stage.FirstSprint}
 							startTime={start}
 							endTime={firstSprintEndTime}
@@ -70,10 +69,8 @@ const Workout: NextPage = () => {
 								icon={GiBiceps}
 								quantity={100}
 								name="Pull Ups"
-								color={Color.Red}
+								color="red"
 								active={stage === Stage.Exercises}
-								endTime={exerciseEndTime}
-								startTime={firstSprintEndTime}
 								reps={pullups}
 								setReps={setPullups}
 							/>
@@ -81,10 +78,8 @@ const Workout: NextPage = () => {
 								icon={GiChestArmor}
 								quantity={200}
 								name="Push Ups"
-								color={Color.Blue}
+								color="blue"
 								active={stage === Stage.Exercises}
-								endTime={exerciseEndTime}
-								startTime={firstSprintEndTime}
 								reps={pushups}
 								setReps={setPushups}
 							/>
@@ -92,10 +87,8 @@ const Workout: NextPage = () => {
 								icon={GiLeg}
 								quantity={300}
 								name="Squats"
-								color={Color.Yellow}
+								color="yellow"
 								active={stage === Stage.Exercises}
-								endTime={exerciseEndTime}
-								startTime={firstSprintEndTime}
 								reps={squats}
 								setReps={setSquats}
 							/>
@@ -106,7 +99,7 @@ const Workout: NextPage = () => {
 							icon={GiCheckMark}
 							quantity="600 reps"
 							name="Exercises"
-							color={Color.Green}
+							color="green"
 							active={stage === Stage.Exercises}
 							startTime={firstSprintEndTime}
 							endTime={exerciseEndTime}
@@ -117,7 +110,7 @@ const Workout: NextPage = () => {
 							icon={GiRun}
 							quantity="1 Mile"
 							name="Sprint"
-							color={Color.Green}
+							color="green"
 							active={stage === Stage.LastSprint}
 							endTime={lastSprintEndTime}
 							startTime={exerciseEndTime}
@@ -129,7 +122,7 @@ const Workout: NextPage = () => {
 						<>
 							<Link
 								href="/"
-								className="rounded-md bg-neutral-900 py-3 px-6 text-neutral-300 transition hover:bg-neutral-800"
+								className="rounded-md border border-neutral-800 bg-black py-3 px-6 text-neutral-300 transition hover:bg-neutral-900"
 							>
 								Cancel
 							</Link>
@@ -170,16 +163,16 @@ const Workout: NextPage = () => {
 									stage === Stage.Exercises &&
 									(pullups !== 100 || pushups !== 200 || squats !== 300)
 								}
-								className="flex items-center gap-3 rounded-md bg-purple-400 px-6 py-3 text-black shadow-2xl shadow-purple-500 transition hover:bg-purple-300 disabled:cursor-not-allowed disabled:bg-neutral-900 disabled:text-neutral-700 disabled:shadow-none"
+								className="flex items-center gap-3 rounded-md border border-purple-400 bg-black px-6 py-3 text-purple-400 transition hover:bg-neutral-900 disabled:cursor-not-allowed disabled:border-neutral-800 disabled:bg-black disabled:text-neutral-700 disabled:shadow-none"
 							>
 								{stage !== Stage.LastSprint ? (
 									<>
-										<span className="font-bold">Next</span>
+										Next
 										<GiNextButton size={20} />
 									</>
 								) : (
 									<>
-										<span className="font-bold">Finish</span>
+										Finish
 										<GiCheckMark size={20} />
 									</>
 								)}
@@ -199,28 +192,23 @@ const Workout: NextPage = () => {
 									icon={GiBiceps}
 									quantity="100 Reps"
 									name="Pull Ups"
-									color={Color.Red}
+									color="red"
 								/>
 								<Event
 									icon={GiChestArmor}
 									quantity="200 Reps"
 									name="Push Ups"
-									color={Color.Blue}
+									color="blue"
 								/>
 								<Event
 									icon={GiLeg}
 									quantity="300 Reps"
 									name="Squats"
-									color={Color.Yellow}
+									color="yellow"
 								/>
 							</div>
 						)}
-						<Event
-							icon={GiRun}
-							quantity="1 Mile"
-							name="Sprint"
-							color={Color.Green}
-						/>
+						<Event icon={GiRun} quantity="1 Mile" name="Sprint" color="green" />
 					</div>
 				)}
 			</Center>

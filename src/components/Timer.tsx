@@ -1,6 +1,7 @@
+import { DateTime, Duration } from 'luxon';
 import { useEffect, useState } from 'react';
 
-import { DateTime } from 'luxon';
+import { Time } from './Time';
 
 type Props = {
 	start: DateTime;
@@ -8,10 +9,7 @@ type Props = {
 };
 
 export const Timer: React.FC<Props> = ({ start, running }) => {
-	const [hours, setHours] = useState<undefined | number>(0);
-	const [minutes, setMinutes] = useState<undefined | number>(0);
-	const [seconds, setSeconds] = useState<undefined | number>(0);
-	const [milliseconds, setMilliseconds] = useState<undefined | number>(0);
+	const [duration, setDuration] = useState<Duration>(Duration.fromObject({}));
 
 	const updateTimer = () => {
 		const diff = DateTime.now().diff(start, [
@@ -21,10 +19,7 @@ export const Timer: React.FC<Props> = ({ start, running }) => {
 			'milliseconds',
 		]);
 
-		setHours(diff.toObject().hours);
-		setMinutes(diff.toObject().minutes);
-		setSeconds(diff.toObject().seconds);
-		setMilliseconds(diff.toObject().milliseconds);
+		setDuration(diff);
 	};
 
 	useEffect(() => {
@@ -39,23 +34,8 @@ export const Timer: React.FC<Props> = ({ start, running }) => {
 	}, [running]);
 
 	return (
-		<div className="mx-auto font-mono text-5xl">
-			<span className={`${hours === 0 ? 'text-neutral-500' : 'text-white'}`}>
-				{String(hours).padStart(2, '0')}:
-			</span>
-			<span
-				className={`${
-					minutes === 0 && hours === 0 ? 'text-neutral-500' : 'text-white'
-				}`}
-			>
-				{String(minutes).padStart(2, '0')}:
-			</span>
-			<span>{String(seconds).padStart(2, '0')}</span>
-			<span>.</span>
-			<span>
-				{String(milliseconds).charAt(0)}
-				{/* {String(milliseconds).padStart(3, '0')} */}
-			</span>
+		<div className="mx-auto text-5xl">
+			<Time duration={duration} />
 		</div>
 	);
 };

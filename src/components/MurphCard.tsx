@@ -1,36 +1,8 @@
-import { DateTime, Duration } from 'luxon';
+import { Card, Time } from '@components';
 import { GiBiceps, GiRun, GiStopwatch } from 'react-icons/gi';
 
+import { DateTime } from 'luxon';
 import { Murph } from '@prisma/client';
-
-type Props = {
-	duration: Duration;
-};
-const Time: React.FC<Props> = ({ duration }) => {
-	return (
-		<div className="font-mono">
-			<span
-				className={`${
-					duration.hours === 0 ? 'text-neutral-400' : 'text-white'
-				}`}
-			>
-				{String(duration.hours).padStart(2, '0')}:
-			</span>
-			<span
-				className={`${
-					duration.minutes === 0 && duration.hours === 0
-						? 'text-neutral-400'
-						: 'text-white'
-				}`}
-			>
-				{String(duration.minutes).padStart(2, '0')}:
-			</span>
-			<span>{String(duration.seconds).padStart(2, '0')}</span>
-			<span>.</span>
-			<span>{String(duration.milliseconds).padStart(3, '0')}</span>
-		</div>
-	);
-};
 
 export const MurphCard: React.FC<Murph> = ({
 	start,
@@ -59,51 +31,33 @@ export const MurphCard: React.FC<Murph> = ({
 	);
 
 	return (
-		<div
-			className={`grid grid-cols-4 gap-y-6 gap-x-12 rounded-md border-l-8 border-purple-400 bg-black py-3 px-6 shadow-2xl shadow-purple-500`}
-		>
-			<div className="flex items-center gap-6">
-				<div className={`text-purple-400`}>
-					<GiStopwatch size={30} />
-				</div>
-				<div>
-					<Time duration={totalTime} />
-					<h3 className="text-sm text-neutral-400">Total Time</h3>
-				</div>
-			</div>
-			<div className="flex items-center gap-6">
-				<div className={`text-green-400`}>
-					<GiRun size={30} />
-				</div>
-				<div>
-					<Time duration={firstSprintTime} />
-					<h4 className="text-sm text-neutral-400">First Sprint Time</h4>
-				</div>
-			</div>
-			<div className="flex items-center gap-6">
-				<div className={`text-red-400`}>
-					<GiBiceps size={30} />
-				</div>
-				<div>
-					<Time duration={exerciseTime} />
-					<h4 className="text-sm text-neutral-400">Exercise Time</h4>
-				</div>
-			</div>
-			<div className="flex items-center gap-6">
-				<div className={`text-green-400`}>
-					<GiRun size={30} />
-				</div>
-				<div>
-					<Time duration={lastSprintTime} />
-					<h4 className="text-sm text-neutral-400">Last Sprint Time</h4>
-				</div>
-			</div>
-
-			<div className="col-span-full">
-				<h6 className="text-center font-mono text-sm text-neutral-400">
+		<Card color="purple">
+			<div className="flex flex-col">
+				<div className="flex flex-col items-center">
 					{DateTime.fromJSDate(start).toFormat('dd LLL yyyy')}
-				</h6>
+				</div>
+
+				<div className="grid flex-1 sm:grid-cols-2 lg:grid-cols-4">
+					<Card icon={GiStopwatch} color="blue" shadow={false} border="none">
+						<Time duration={totalTime} />
+						<h3 className="text-sm text-neutral-400">Total Time</h3>
+					</Card>
+					<Card icon={GiRun} color="green" shadow={false} border="none">
+						<Time duration={firstSprintTime} />
+						<h4 className="text-sm text-neutral-400">First Sprint Time</h4>
+					</Card>
+
+					<Card icon={GiBiceps} color="red" shadow={false} border="none">
+						<Time duration={exerciseTime} />
+						<h4 className="text-sm text-neutral-400">Exercise Time</h4>
+					</Card>
+
+					<Card icon={GiRun} color="green" shadow={false} border="none">
+						<Time duration={lastSprintTime} />
+						<h4 className="text-sm text-neutral-400">Last Sprint Time</h4>
+					</Card>
+				</div>
 			</div>
-		</div>
+		</Card>
 	);
 };

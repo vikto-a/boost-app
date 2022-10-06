@@ -23,11 +23,11 @@ const Login: NextPage = () => {
 			<Center>
 				<div className="flex flex-col gap-6">
 					<button
-						className="flex items-center gap-6 rounded-md border-l-8 border-blue-400 bg-neutral-900 py-3 px-6 font-bold text-blue-400 shadow-2xl shadow-blue-500"
+						className="flex items-center gap-6 rounded-md border border-blue-400 bg-black py-3 px-6 text-blue-400 transition hover:bg-neutral-900"
 						onClick={() => signIn('google')}
 					>
 						<FaGoogle size={30} />
-						<span className="text-white">Continue with Google</span>
+						Continue with Google
 					</button>
 				</div>
 			</Center>

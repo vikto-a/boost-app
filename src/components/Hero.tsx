@@ -1,4 +1,4 @@
-import { Btn, Exercise } from '@components';
+import { Btn, Step } from '@components';
 import {
 	GiBiceps,
 	GiChestArmor,
@@ -6,8 +6,6 @@ import {
 	GiPlayButton,
 	GiRun,
 } from 'react-icons/gi';
-
-import { Color } from '@type';
 
 export const Hero: React.FC = () => {
 	return (
@@ -29,36 +27,17 @@ export const Hero: React.FC = () => {
 			</div>
 			<div className="relative flex flex-col items-center gap-6">
 				<div className="absolute top-0 bottom-0 z-10 w-px border border-dashed border-white"></div>
-				<Exercise
-					icon={GiRun}
-					quantity="1 Mile"
-					name="Sprint"
-					color={Color.Green}
-				/>
-				<Exercise
-					icon={GiBiceps}
-					quantity="100 Reps"
-					name="Pull Ups"
-					color={Color.Red}
-				/>
-				<Exercise
+
+				<Step icon={GiRun} quantity="1 Mile" name="Sprint" color="green" />
+				<Step icon={GiBiceps} quantity="100 Reps" name="Pull Ups" color="red" />
+				<Step
 					icon={GiChestArmor}
 					quantity="200 Reps"
 					name="Push Ups"
-					color={Color.Blue}
+					color="blue"
 				/>
-				<Exercise
-					icon={GiLeg}
-					quantity="300 Reps"
-					name="Squats"
-					color={Color.Yellow}
-				/>
-				<Exercise
-					icon={GiRun}
-					quantity="1 Mile"
-					name="Sprint"
-					color={Color.Green}
-				/>
+				<Step icon={GiLeg} quantity="300 Reps" name="Squats" color="yellow" />
+				<Step icon={GiRun} quantity="1 Mile" name="Sprint" color="green" />
 			</div>
 		</section>
 	);

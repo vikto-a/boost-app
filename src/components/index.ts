@@ -1,12 +1,16 @@
 export { Btn } from './Btn';
+export { Card } from './Card';
 export { Event } from './Event';
-export { Exercise } from './Exercise';
 export { Footer } from './Footer';
 export { Hero } from './Hero';
 export { IncrementBtn } from './IncrementBtn';
 export { MurphCard } from './MurphCard';
 export { Navbar } from './Navbar';
 export { NavLink } from './NavLink';
+export { Progress } from './Progress';
 export { RepEvent } from './RepEvent';
+export { SignOutBtn } from './SignOutBtn';
+export { Step } from './Step';
+export { Time } from './Time';
 export { Timer } from './Timer';
 export { WelcomeUser } from './WelcomeUser';

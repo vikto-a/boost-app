@@ -1,12 +1,18 @@
-import { Btn, MurphCard, WelcomeUser } from '@components';
-import { GiCrossedBones, GiPlayButton } from 'react-icons/gi';
-import { signOut, useSession } from 'next-auth/react';
+import { Btn, Card, MurphCard, Time, WelcomeUser } from '@components';
+import {
+	GiCalculator,
+	GiDatabase,
+	GiPlayButton,
+	GiSpeedometer,
+} from 'react-icons/gi';
 
+import { DateTime } from 'luxon';
 import type { NextPage } from 'next';
 import { Page } from '@layouts';
 import { trpc } from 'utils/trpc';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
 const Me: NextPage = () => {
 	const { data: session } = useSession();
@@ -24,31 +30,37 @@ const Me: NextPage = () => {
 
 	return (
 		<Page title="Murph Profile">
-			<div className="container mx-auto flex min-h-screen gap-12 py-36 px-6">
-				<div className="flex flex-1 flex-col gap-6">
+			<div className="container mx-auto grid min-h-screen gap-12 py-36 px-6">
+				<div className="flex flex-wrap items-end justify-between gap-6">
 					<WelcomeUser />
-					<div className="flex-1">
-						<h2>Total Murphs</h2>
-						<h3>23</h3>
-						<h2>Average Time</h2>
-						<h3>23</h3>
-						<h2>Fastest Time</h2>
-						<h3>23</h3>
-					</div>
-					<div className="flex flex-col gap-6">
-						<Btn to="/workout" icon={GiPlayButton}>
-							Begin Murph
-						</Btn>
-						<button
-							onClick={() => signOut()}
-							className="flex items-center gap-3 rounded-md bg-red-400 px-6 py-3 text-black shadow-2xl shadow-red-500 transition hover:bg-red-300"
-						>
-							<span className="flex-1 text-left font-bold">Sign Out</span>
-							<GiCrossedBones size={20} />
-						</button>
-					</div>
+
+					<Btn to="/workout" icon={GiPlayButton}>
+						Start
+					</Btn>
 				</div>
-				<div>
+				<div className="grid gap-6 md:grid-cols-3">
+					<Card color="yellow" icon={GiDatabase}>
+						<h2 className="font-mono text-lg font-bold">23</h2>
+						<h3 className="text-sm text-neutral-400">Total Murphs</h3>
+					</Card>
+					<Card color="blue" icon={GiCalculator}>
+						<span className="font-mono text-lg font-bold">
+							<Time duration={DateTime.now().diffNow()} />
+						</span>
+						<h3 className="text-sm text-neutral-400">Average Time</h3>
+					</Card>
+					<Card color="green" icon={GiSpeedometer}>
+						<span className="font-mono text-lg font-bold">
+							<Time duration={DateTime.now().diffNow()} />
+						</span>
+						<h3 className="text-sm text-neutral-400">Fastest Time</h3>
+					</Card>
+				</div>
+				<div className="grid gap-6">
+					<div className="flex items-end justify-between">
+						<h2 className="text-2xl font-bold">My Murphs</h2>
+						<p>sorting component dropdown</p>
+					</div>
 					{murphs.data ? (
 						<div className="grid gap-6">
 							{murphs.data.map((murph) => (
