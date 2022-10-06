@@ -45,7 +45,7 @@ const Leaderboard: NextPage = () => {
 				{leader.data ? (
 					<div className="grid w-full gap-6">
 						{top.map((item, i) => (
-							<LeaderboardCard murph={item.murph} rank={i + 1} />
+							<LeaderboardCard murph={item.murph} rank={i + 1} key={i} />
 						))}
 					</div>
 				) : (
