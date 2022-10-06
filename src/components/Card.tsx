@@ -21,7 +21,7 @@ export const Card: React.FC<Props> = ({
 	border = 'all',
 }) => {
 	const variants = {
-		$all: 'flex items-center gap-6 rounded-md bg-black py-3 px-6',
+		$all: 'flex items-center gap-6 rounded-md bg-black py-3 px-6 relative',
 		shadow: {
 			true: 'shadow-2xl',
 			false: 'shadow-none',

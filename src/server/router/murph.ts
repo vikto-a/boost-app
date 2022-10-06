@@ -18,6 +18,16 @@ export const protectedMurphRouter = createProtectedRouter()
 			});
 		},
 	})
+	.mutation('delete', {
+		input: z.string(),
+		async resolve({ ctx, input }) {
+			return await ctx.prisma.murph.delete({
+				where: {
+					id: input,
+				},
+			});
+		},
+	})
 	.query('getMurphs', {
 		async resolve({ ctx }) {
 			return await ctx.prisma.murph.findMany({
