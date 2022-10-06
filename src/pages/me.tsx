@@ -40,7 +40,7 @@ const Me: NextPage = () => {
 				</div>
 				<div className="grid gap-6 md:grid-cols-3">
 					<Card color="yellow" icon={GiDatabase}>
-						<h2 className="font-mono text-lg font-bold">23</h2>
+						<h2 className="font-mono text-lg font-bold">0</h2>
 						<h3 className="text-sm text-neutral-400">Total Murphs</h3>
 					</Card>
 					<Card color="blue" icon={GiCalculator}>
