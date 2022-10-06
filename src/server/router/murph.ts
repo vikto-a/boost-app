@@ -26,4 +26,14 @@ export const protectedMurphRouter = createProtectedRouter()
 				},
 			});
 		},
+	})
+	.query('getCount', {
+		async resolve({ ctx }) {
+			return await ctx.prisma.murph.aggregate({
+				_count: true,
+				where: {
+					userId: ctx.session.user.id,
+				},
+			});
+		},
 	});
