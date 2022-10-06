@@ -6,7 +6,7 @@ export const WelcomeUser: React.FC = () => {
 
 	return (
 		<div className="flex items-center gap-6">
-			<div className="relative h-16 w-16 rounded-full bg-neutral-900">
+			<div className="relative h-16 w-16 rounded-full bg-neutral-800">
 				{session?.user?.image && (
 					<Image
 						src={session.user?.image}

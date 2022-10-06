@@ -4,6 +4,7 @@ export { Event } from './Event';
 export { Footer } from './Footer';
 export { Hero } from './Hero';
 export { IncrementBtn } from './IncrementBtn';
+export { LeaderboardCard } from './LeaderboardCard';
 export { Loading } from './Loading';
 export { MurphCard } from './MurphCard';
 export { Navbar } from './Navbar';

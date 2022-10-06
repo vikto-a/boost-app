@@ -17,7 +17,7 @@ export const NavLink: React.FC<Props> = ({ to, children, icon }) => {
 	return (
 		<Link
 			href={to}
-			className={`flex items-center gap-3 px-6 py-3 transition ${
+			className={`flex items-center gap-1.5 px-6 py-3 transition ${
 				active
 					? 'font-bold text-purple-400'
 					: 'text-white hover:text-neutral-300'
