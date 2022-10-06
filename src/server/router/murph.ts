@@ -36,4 +36,17 @@ export const protectedMurphRouter = createProtectedRouter()
 				},
 			});
 		},
+	})
+	.query('getTimes', {
+		async resolve({ ctx }) {
+			return await ctx.prisma.murph.findMany({
+				where: {
+					userId: ctx.session.user.id,
+				},
+				select: {
+					start: true,
+					lastSprintEndTime: true,
+				},
+			});
+		},
 	});
