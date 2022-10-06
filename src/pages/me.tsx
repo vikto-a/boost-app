@@ -1,4 +1,4 @@
-import { Btn, Card, MurphCard, Time, WelcomeUser } from '@components';
+import { Btn, Card, Loading, MurphCard, Time, WelcomeUser } from '@components';
 import {
 	GiCalculator,
 	GiDatabase,
@@ -42,7 +42,7 @@ const Me: NextPage = () => {
 				<div className="grid gap-6 md:grid-cols-3">
 					<Card color="yellow" icon={GiDatabase}>
 						<h2 className="font-mono text-lg font-bold">
-							{totalMurphs.data ? totalMurphs.data._count : 'loading...'}
+							{totalMurphs.data ? totalMurphs.data._count : <Loading />}
 						</h2>
 						<h3 className="text-sm text-neutral-400">Total Murphs</h3>
 					</Card>
@@ -71,7 +71,7 @@ const Me: NextPage = () => {
 							))}
 						</div>
 					) : (
-						'loading...'
+						<Loading />
 					)}
 				</div>
 			</div>
