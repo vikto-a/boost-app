@@ -64,6 +64,9 @@ const Me: NextPage = () => {
 					'milliseconds'
 				)
 			);
+		} else {
+			setAvg(DateTime.now().diffNow());
+			setFastest(DateTime.now().diffNow());
 		}
 	}, [allTimes.data]);
 
@@ -105,11 +108,22 @@ const Me: NextPage = () => {
 						<p className="text-neutral-500">future sorting feature</p>
 					</div>
 					{murphs.data ? (
-						<div className="grid gap-6">
-							{murphs.data.map((murph) => (
-								<MurphCard key={murph.id} {...murph} />
-							))}
-						</div>
+						<>
+							{murphs.data.length === 0 ? (
+								<div className="flex h-64 flex-col items-center justify-center gap-6 rounded-md border border-neutral-800 p-6">
+									<h6 className="font-bold text-neutral-500">No Murphs</h6>
+									<Btn icon={GiPlayButton} to="/workout">
+										Start Murph
+									</Btn>
+								</div>
+							) : (
+								<div className="grid gap-6">
+									{murphs.data.map((murph) => (
+										<MurphCard key={murph.id} {...murph} />
+									))}
+								</div>
+							)}
+						</>
 					) : (
 						<Loading />
 					)}
