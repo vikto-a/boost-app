@@ -190,7 +190,7 @@ const Workout: NextPage = () => {
 									Profile
 								</Btn>
 							) : (
-								<Btn to="/home" icon={GiHouse}>
+								<Btn to="/" icon={GiHouse}>
 									Home
 								</Btn>
 							)}
