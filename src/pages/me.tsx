@@ -59,7 +59,7 @@ const Me: NextPage = () => {
 				<div className="grid gap-6">
 					<div className="flex items-end justify-between">
 						<h2 className="text-2xl font-bold">My Murphs</h2>
-						<p>sorting component dropdown</p>
+						<p className="text-neutral-500">future sorting feature</p>
 					</div>
 					{murphs.data ? (
 						<div className="grid gap-6">
