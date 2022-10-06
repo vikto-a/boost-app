@@ -19,7 +19,7 @@
 <h3 align="center">murph</h3>
 
   <p align="center">
-  This website was made for a local flight enthusiast group.
+  The Murph workout is a strenuous training dedicated to Lieutenant Michael Murphy. This project allows users to save their workout time and compete with others.
     <br />
     <a href="https://github.com/raymondkneipp/murph"><strong>Explore the docs »</strong></a>
     <br />
