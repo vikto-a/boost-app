@@ -148,7 +148,7 @@ const Me: NextPage = () => {
 					</Card>
 				</div>
 				<div className="grid gap-6">
-					<div className="flex items-end justify-between">
+					<div className="flex flex-wrap items-end justify-between gap-3">
 						<h2 className="text-2xl font-bold">My Murphs</h2>
 
 						<Listbox
@@ -157,7 +157,7 @@ const Me: NextPage = () => {
 							as="div"
 							className="relative"
 						>
-							<Listbox.Button className="flex w-64 items-center justify-between rounded-md border border-neutral-800 py-3 px-6 capitalize">
+							<Listbox.Button className="flex items-center justify-between gap-3 rounded-md border border-neutral-800 py-3 px-6 capitalize sm:w-52">
 								{selectedSort}
 								<FaCaretDown size={15} />
 							</Listbox.Button>
