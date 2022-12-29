@@ -7,6 +7,7 @@ import {
 	GiLaurelsTrophy,
 	GiSittingDog,
 } from 'react-icons/gi';
+import Link from "next/link"
 
 import { Popover } from '@headlessui/react';
 import { useSession } from 'next-auth/react';
@@ -16,12 +17,12 @@ export const Navbar: React.FC = () => {
 
 	return (
 		<nav className="absolute top-6 right-6 left-6 z-40 flex items-center justify-between rounded-md bg-black px-6">
-			<div className="flex items-center gap-3">
+			<Link href="/" className="flex items-center gap-3">
 				<span className="text-purple-400">
 					<GiLabradorHead size={30} />
 				</span>
 				<span className="py-3 text-xl font-bold">Murph</span>
-			</div>
+			</Link>
 
 			<div className="hidden items-center md:flex">
 				<NavLink to="/" icon={GiDogHouse}>
